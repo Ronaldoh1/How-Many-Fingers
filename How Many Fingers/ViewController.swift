@@ -10,16 +10,39 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var resultsLabel: UILabel!
+    @IBOutlet weak var numberTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+
+    @IBAction func guessButtonTapped(sender: AnyObject) {
+
+        var randomNumber = arc4random_uniform(6)
+
+        var guessInt = numberTextField.text.toInt()
+
+        if guessInt != nil{
+            
+            if(guessInt == Int(randomNumber)){
+
+            resultsLabel.text = "You got it Right!"
+
+            }else {
+               resultsLabel.text = "Please try again!"
+            }
+
+
+        } else {
+
+            numberTextField.text = "Please enter a number"
+        }
+
+    }
 
 }
 
