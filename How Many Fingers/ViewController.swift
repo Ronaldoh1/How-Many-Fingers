@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import Foundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var resultsLabel: UILabel!
     @IBOutlet weak var numberTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.numberTextField.delegate = self
 
     }
 
@@ -31,9 +33,11 @@ class ViewController: UIViewController {
             if(guessInt == Int(randomNumber)){
 
             resultsLabel.text = "You got it Right!"
+                resignFirstResponder();
 
             }else {
                resultsLabel.text = "Please try again!"
+                resignFirstResponder();
             }
 
 
@@ -42,6 +46,10 @@ class ViewController: UIViewController {
             numberTextField.text = "Please enter a number"
         }
 
+    }
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
 }
